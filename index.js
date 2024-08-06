@@ -5,7 +5,6 @@ let date = new Date().getDate();
 let month = new Date().getMonth();
 let year = new Date().getFullYear();
 let newsDate = `${year}-${month}-${date}`
-console.log(newsDate)
 // 2024-07-03
 let fetchApi = ()=>{
     fetch(`https://newsapi.org/v2/everything?q=India&from=${newsDate}&sortBy=publishedAt&apiKey=${apiKey}`)
@@ -24,6 +23,8 @@ fetchApi();
 
 let bindData=(articles)=>{
     // console.log(articles)
+    console.log(articles)
+    console.log("wroking at articles")
     articles.forEach((articles) => {
         let date = new Date(articles.publishedAt).toLocaleString();
         let div = document.createElement("div")
@@ -45,6 +46,7 @@ let bindData=(articles)=>{
         else{
             main.appendChild(div)
         }
+        console.log(newsDate)
     });
     // main.addEventListener("click",(e)=>{
     //     e.target

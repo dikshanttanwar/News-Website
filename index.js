@@ -1,11 +1,19 @@
 let headline = document.querySelector(".headline")
+let apiKey = "1d3431d27f0d444484889720cdc6dd84";
 let main = document.querySelector("main")
+let date = new Date().getDate();
+let month = new Date().getMonth();
+let year = new Date().getFullYear();
+let newsDate = `${year}-${month}-${date}`
+console.log(newsDate)
+// 2024-07-03
 let fetchApi = ()=>{
-    fetch("https://newsapi.org/v2/everything?q=India&from=2024-07-03&sortBy=publishedAt&apiKey=1d3431d27f0d444484889720cdc6dd84")
+    fetch(`https://newsapi.org/v2/everything?q=India&from=${newsDate}&sortBy=publishedAt&apiKey=${apiKey}`)
     .then((response)=>{
         return response.json();
     })
     .then((data)=>{
+        console.log(data)
         bindData(data.articles)
     })
     .catch((error)=>{
@@ -16,7 +24,7 @@ fetchApi();
 
 let bindData=(articles)=>{
     // console.log(articles)
-    articles.forEach(articles => {
+    articles.forEach((articles) => {
         let date = new Date(articles.publishedAt).toLocaleString();
         let div = document.createElement("div")
         div.classList.add("card")
